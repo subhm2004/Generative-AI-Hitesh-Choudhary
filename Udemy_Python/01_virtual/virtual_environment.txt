@@ -1,0 +1,12 @@
+Step,Command
+Banana (Create),                             python3 -m venv venv
+Chalu Karna (Activate)                       source venv/bin/activate
+Check Karna,                                 which python
+Band Karna (Deactivate)                      deactivate
+Mitana (Delete)                              rm -rf venv
+
+
+* TO DOWNLOAD THE PACKAGES
+pip install -r requirements.txt
+
+pip list or use pip freeze
