@@ -1,4 +1,4 @@
-cup = input("Choose your cup size (small/medium/large): ").lower()
+cup = input("Choose your cup size (small/medium/large): ").lower() #chaining ki hai yha pr
 
 if cup == "small":
     print("Price is 10 rupees")
