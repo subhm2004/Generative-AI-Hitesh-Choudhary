@@ -1,6 +1,6 @@
 kettle_boiled = input("Enter true or false: ").strip().lower() == "true"
 
-if kettle_boiled:
+if (kettle_boiled):
     print("Kettle done! Time to make chai ☕")
 else:
     print("Kettle not ready yet.")
