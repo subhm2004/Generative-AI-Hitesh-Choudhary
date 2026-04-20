@@ -1,5 +1,7 @@
-names = ["Hitesh", "Meera", "Sam", "Ali"]
-bills = [50, 70, 100, 55]
+names = ["Shubham", "Meera", "Sandeep", "Alina"]
+bills = [5_000, 70, 100, 55]
 
-for name, amount in zip(names, bills):
+# it is used to combine the lists 
+
+for name, amount in zip(names, bills) :
     print(f"{name} paid {amount} rupees")

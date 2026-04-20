@@ -1,3 +1,4 @@
+# List of dictionary 
 users = [
     {"id": 1, "total": 100, "coupon": "P20"},
     {"id": 2, "total": 150, "coupon": "F10"},
@@ -13,4 +14,4 @@ discounts = {
 for user in users:
     percent, fixed = discounts.get(user["coupon"], (0, 0))
     discount = user["total"] * percent + fixed
-    print(f"{user["id"]} paid {user["total"]} and got discount for next visit of rupees {discount}")
+    print(f"user_id {user["id"]} paid {user["total"]} and got discount for next visit of rupees {discount}")
