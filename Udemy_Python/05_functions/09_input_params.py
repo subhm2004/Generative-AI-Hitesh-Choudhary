@@ -1,20 +1,24 @@
-# chai = "Ginger chai"
+chai = "Ginger chai"
 
-# def prepare_chai(order):
-#     print("Preparing ", order)
+def prepare_chai(order):
+    print("Preparing ", order)
 
 
-# prepare_chai(chai)
-# print(chai)
+prepare_chai(chai)
+print(chai)
+
+print("\n")
 
 
 chai = [1, 2, 3]
 
 def edit_chai(cup):
-    cup[1] = 42
+    cup[1] = 42 # update index 1 
 
 edit_chai(chai)
 print(chai)
+
+print("\n")
 
 
 def make_chai(tea, milk, sugar):
@@ -22,6 +26,8 @@ def make_chai(tea, milk, sugar):
 
 make_chai("Darjeeling", "Yes", "Low") #positional
 make_chai(tea="Green", sugar="Medium", milk="No") #keywords
+
+print("\n")
 
 
 def special_chai(*ingredients, **extras):
