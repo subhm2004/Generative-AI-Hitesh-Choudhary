@@ -30,10 +30,10 @@ make_chai(tea="Green", sugar="Medium", milk="No") #keywords
 print("\n")
 
 
-def special_chai(*ingredients, **extras):
-    print("Ingredients", ingredients)
-    print("Extras", extras)
-
+def special_chai(*args, **kwargs):
+    print("Ingredients", args)
+    print("Extras", kwargs)
+# tuples and dictionary
 special_chai("Cinnamon", "Cardmom", sweetener="Honey", foam="yes")
 
 # def chai_order(order=[]):
