@@ -11,7 +11,7 @@ stall = serve_chai()
 def get_chai_list():
     return ["Cup 1", "Cup 2", "Cup 3"]
 
-# generator function
+# generator function (generator fuction me yeild word ka use hota hai )
 def get_chai_gen():
     yield "Cup 1"
     yield "Cup 2"
@@ -20,5 +20,6 @@ def get_chai_gen():
 chai = get_chai_gen()
 print(next(chai))
 print(next(chai))
+print("ab aage chalega cup 3 wala")
 print(next(chai))
 # print(next(chai)) # gives error

@@ -1,6 +1,6 @@
 def infinite_chai():
     count = 1
-    while True:
+    while (True):
         yield f"Refil #{count}"
         count += 1
 
@@ -10,5 +10,9 @@ user2 = infinite_chai()
 for _ in range(5):
     print(next(refill))
 
+print("\nUser 2 \n")
+
 for _ in range(6):
     print(next(user2))
+
+    
