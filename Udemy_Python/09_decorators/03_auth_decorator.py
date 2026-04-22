@@ -1,3 +1,4 @@
+# build authentication with decorator
 from functools import wraps
 
 def require_admin(func):

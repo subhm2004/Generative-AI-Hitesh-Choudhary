@@ -1,3 +1,4 @@
+# Built a logger with decorator
 from functools import wraps
 
 def log_activity(func):
