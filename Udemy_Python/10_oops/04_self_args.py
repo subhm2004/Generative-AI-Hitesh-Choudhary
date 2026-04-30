@@ -1,6 +1,7 @@
 class Chaicup:
     size = 150 #ml
 
+    # self is a reference to the current instance of the class (method hai ye)
     def describe(self):
         return f"A {self.size}ml chai cup"
     
