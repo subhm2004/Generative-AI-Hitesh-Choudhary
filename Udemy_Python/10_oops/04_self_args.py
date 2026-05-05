@@ -8,8 +8,11 @@ class Chaicup:
 
 cup = Chaicup()
 print(cup.describe())
-print(Chaicup.describe(cup))
 
+print("\nUsing class method without creating an instance:")
+print(Chaicup.describe(cup)) # class method ko call karne ke liye instance pass karna padta hai, self ke through access hota hai
+
+print("\nCreating another instance of Chaicup:")
 cup_two = Chaicup()
 cup_two.size = 100
 print(Chaicup.describe(cup_two))
