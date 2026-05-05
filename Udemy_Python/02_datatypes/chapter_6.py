@@ -20,6 +20,8 @@ print(f"Last word: {chai_description[::-1]}") # reverse kr dega string ko
 label_text = "Chai Spécial"
 ecoded_label = label_text.encode("utf-8") #commin way of encoding
 
+print("\n")
+
 print(f"Non Encoded label: {label_text}")
 print("\n")
 
