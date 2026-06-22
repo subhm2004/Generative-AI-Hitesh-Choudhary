@@ -1,3 +1,15 @@
+# ============================================================
+# FILE: computed_property.py
+# TOPIC: @computed_field - calculated fields in Pydantic
+# FOLDER: 14_pydantic/01_basics
+# ============================================================
+# @computed_field = field jo automatically CALCULATE hoti hai
+# Store nahi hoti - har baar property access par calculate hoti hai
+# @property decorator ke saath use karo
+# model_dump() mein bhi computed fields include hoti hain
+# Example: total_price = price * quantity (automatic calculate)
+# ============================================================
+
 from pydantic import BaseModel, computed_field, Field
 
 
@@ -5,22 +17,23 @@ class Product(BaseModel):
     price: float
     quantity: int
 
+    # @computed_field + @property = calculated field
     @computed_field
     @property
     def total_price(self) -> float:
-        return self.price * self.quantity
+        return self.price * self.quantity  # automatic calculate
     
 
 class Booking(BaseModel):
     user_id: int
     room_id: int
-    nights: int = Field(..., ge=1)
+    nights: int = Field(..., ge=1)  # kam se kam 1 night
     rate_per_night: float
 
     @computed_field
     @property
     def total_amount(self) -> float:
-        return self.nights * self.rate_per_night
+        return self.nights * self.rate_per_night  # nights x rate
     
 booking = Booking(
     user_id=123,
@@ -29,5 +42,5 @@ booking = Booking(
     rate_per_night=100.0
 )
 
-print(booking.total_amount)
-print(booking.model_dump())
+print(booking.total_amount)  # 300.0 - automatically calculated!
+print(booking.model_dump())  # dict mein bhi total_amount aayega

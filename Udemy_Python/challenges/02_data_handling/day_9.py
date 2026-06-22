@@ -1,3 +1,17 @@
+# ============================================================
+# FILE: day_9.py
+# TOPIC: Base64 encoding, password strength, file vault
+# FOLDER: challenges/02_data_handling
+# CHALLENGE DAY: Day 9
+# ============================================================
+# Yeh challenge sikhata hai:
+# - Base64 = text ko encoded format mein convert (simple obfuscation)
+# - base64.b64encode() / b64decode() = encode/decode functions
+# - Password strength scoring system
+# - File mein encoded credentials save karna (|| separator)
+# - match-case menu driven program
+# ============================================================
+
 """
 Challenge: Offline Credential Manager
 
@@ -15,24 +29,30 @@ Bonus:
 - Mask password when showing in the list
 """
 
-import base64
+import base64  # encoding/decoding ke liye built-in module
 import os
 
 VAULT_FILE = "vault.txt"
 
+# Text ko Base64 encoded string mein convert karo
 def encode(text):
+    # .encode() = string -> bytes, b64encode = encode, .decode() = bytes -> string
     return base64.b64encode(text.encode()).decode()
 
+# Base64 string ko wapas original text mein convert karo
 def decode(text):
     return base64.b64decode(text.encode()).decode()
 
+# Password ki strength check karo aur label return karo
 def password_strength(password):
     length = len(password)
     has_upper = any(c.isupper() for c in password)
     has_digit = any(c.isdigit() for c in password)
     has_special = any(c in "!@#$%^&*().,<>" for c in password)
 
+    # Har condition True hai to 1 point - total score 0-4
     score = sum([length >= 8, has_upper, has_digit, has_special])
+    # Score ke hisaab se label return (min cap at index 3)
     return ["Weak", "Medium", "Strong", "Very Strong"][min(score, 3)]
 
 
@@ -43,9 +63,11 @@ def add_credential():
 
     strength = password_strength(password)
 
+    # || separator se fields jod do, phir encode karo
     line = f"{website}||{username}||{password}"
     encoded_line = encode(line)
 
+    # Encoded line file mein append karo (har credential ek line)
     with open(VAULT_FILE, 'a', encoding="utf-8") as f:
         f.write(encoded_line + "\n")
 
@@ -58,9 +80,9 @@ def view_credentials():
     
     with open(VAULT_FILE, 'r', encoding="utf-8") as f:
         for line in f:
-            decoded = decode(line.strip())
+            decoded = decode(line.strip())  # decode karke original text
             website, username, password = decoded.split("||")
-            hidden_password = '*' * len(password)
+            hidden_password = '*' * len(password)  # mask password with stars
             print(f"{website} | {username} | {password}")
 
 

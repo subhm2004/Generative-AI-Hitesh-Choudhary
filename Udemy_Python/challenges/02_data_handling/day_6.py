@@ -1,3 +1,17 @@
+# ============================================================
+# FILE: day_6.py
+# TOPIC: JSON to CSV conversion, DictWriter
+# FOLDER: challenges/02_data_handling
+# CHALLENGE DAY: Day 6
+# ============================================================
+# Yeh challenge sikhata hai:
+# - JSON file se data read karna (API response jaisa format)
+# - CSV mein convert karna (Excel mein open karne ke liye)
+# - csv.DictWriter = dictionary rows ko CSV mein likho
+# - data[0].keys() = pehle record se column names (headers) nikalo
+# - File existence check aur error handling
+# ============================================================
+
 """
  Challenge: JSON-to-CSV Converter Tool
 
@@ -28,7 +42,7 @@ def load_json_data(filename):
     
     with open(filename, 'r', encoding="utf-8") as f:
         try:
-            return json.load(f)
+            return json.load(f)  # JSON array of dicts -> Python list
         except:
             print("Invalid JSON format")
 
@@ -37,13 +51,15 @@ def convert_to_csv(data, output_file):
         print("No data to convert")
         return
     
+    # Pehle record ke keys = CSV column headers
     fieldname = list(data[0].keys())
 
     with open(output_file, "w", newline="", encoding="utf-8") as f:
+        # DictWriter = har dict ko ek CSV row banata hai
         writer = csv.DictWriter(f, fieldnames=fieldname)
-        writer.writeheader()
+        writer.writeheader()  # pehli line = column names
         for record in data:
-            writer.writerow(record)
+            writer.writerow(record)  # har record ek row
     
     print(f"Converted {len(data)} records to {output_file}")
 

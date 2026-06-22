@@ -1,3 +1,17 @@
+# ============================================================
+# FILE: day_5.py
+# TOPIC: matplotlib, data visualization, defaultdict
+# FOLDER: challenges/02_data_handling
+# CHALLENGE DAY: Day 5
+# ============================================================
+# Yeh challenge sikhata hai:
+# - matplotlib.pyplot = graphs aur charts banane ke liye
+# - CSV se data read karke graphs plot karna
+# - plt.plot() = line graph, plt.bar() = bar chart
+# - defaultdict(int) = missing keys ke liye auto 0 value
+# - plt.show() = graph window mein dikhana
+# ============================================================
+
 """
 Sample data:
 Date,City,Temperature,Condition
@@ -14,13 +28,15 @@ Plot graphs from this data
 
 """
 import csv
-from collections import defaultdict
-import matplotlib.pyplot as plt
+from collections import defaultdict  # auto-default value wala dictionary
+import matplotlib.pyplot as plt  # plotting library (pip install matplotlib)
 
 FILENAME = "weather_logs.csv"
+
 def visualize_weather():
-    dates = []
-    temps = []
+    dates = []    # x-axis ke liye dates
+    temps = []    # y-axis ke liye temperatures
+    # defaultdict(int) = agar key nahi hai to automatically 0 se start
     conditions = defaultdict(int)
 
     with open(FILENAME, "r", encoding="utf-8") as f:
@@ -29,22 +45,25 @@ def visualize_weather():
             try:
                 dates.append(row["Date"])
                 temps.append(row["Temperature"])
+                # Har condition ka count badhao (kitni baar aayi)
                 conditions[row["Condition"]] += 1
             except:
-                continue
+                continue  # corrupt row skip karo
     if not dates:
         print("NO data is available")
         return
     
-    plt.figure(figsize=(10, 7))
-    plt.plot(dates, temps, marker='o')
+    # ----- LINE GRAPH: Temperature over time -----
+    plt.figure(figsize=(10, 7))  # graph ka size (width, height inches mein)
+    plt.plot(dates, temps, marker='o')  # line graph with circle markers
     plt.title("Temperature over time")
     plt.xlabel("Date")
     plt.ylabel("Temperature")
-    plt.tight_layout()
-    plt.grid(True)
-    plt.show()
+    plt.tight_layout()  # labels overlap na karein
+    plt.grid(True)  # background grid lines
+    plt.show()  # graph window open karo
 
+    # ----- BAR CHART: Weather conditions count -----
     plt.figure(figsize=(7, 5))
     plt.bar(conditions.keys(), conditions.values(), color='skyblue')
     plt.xlabel("Condition")

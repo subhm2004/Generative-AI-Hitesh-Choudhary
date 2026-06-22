@@ -1,5 +1,17 @@
+# =============================================================================
+# FILE    : day_08.py
+# TOPIC   : Book Dataset Banana (Recommendation system ke liye sample books)
+# FOLDER  : challenges/05_data_science/
+# CHALLENGE DAY : Day 08
+# =============================================================================
+#
+# Book recommendation engine ke liye 10 books ka data banate hain —
+# title, author, genre, description. Baad mein similar books suggest karenge!
+
 import pandas as pd
 
+# data = list of dictionaries — har dictionary ek book ki info
+# Har book mein: title, author, genre, description keys hain
 data = [
     {
         "title": "The Silent Forest",
@@ -63,6 +75,9 @@ data = [
     }
 ]
 
+# List ko pandas DataFrame mein convert karo — table format
 df = pd.DataFrame(data)
+
+# books.csv file mein save — day_09 aur day_10 is file ko use karenge
 df.to_csv("books.csv", index=False)
 print("✅ Book dataset created")

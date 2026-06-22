@@ -1,21 +1,32 @@
+# ============================================================
+# FILE   : 12_built_in.py
+# TOPIC  : Function attributes, docstrings, default parameters, help()
+# FOLDER : 05_functions
+# ============================================================
+# Functions ke special attributes hote hain (__doc__, __name__).
+# Default parameters, docstrings, aur built-in help() bhi seekhenge.
+
 # Ye function chai ka flavor return karta hai, default "masala" hai
+# Default parameter: agar flavor na do toh "masala" use hoga automatically
 def chai_flavor(flavor="masala"):
     """Return the flavor of chai."""
+    # Upar wala triple-quote string = DOCSTRING — function ki description
     chai = "ginger"  # ye variable use nahi hua, bas pada hai yahan
     return flavor  # jo flavor diya usi ko wapas bhej do
 
 
-# Function ka docstring print karo (triple quotes wala description)
-print(chai_flavor.__doc__)
+# __doc__ = function ki docstring (description) access karo
+print(chai_flavor.__doc__)  # "Return the flavor of chai."
 
-# Function ka naam print karo
-print(chai_flavor.__name__)
+# __name__ = function ka naam string mein
+print(chai_flavor.__name__)  # "chai_flavor"
 
-# Built-in len() function ki puri help/documentation dikhao
-help(len)
+# help() = built-in function ki poori documentation terminal mein dikhao
+help(len)  # len() function ka help page — kaise use karna hai sab likha hai
 
 
 # Ye function chai aur samosa ka total bill calculate karta hai
+# Dono parameters ke DEFAULT values 0 hain — agar na do toh 0 maan lega
 def generate_bill(chai=0, samosa=0):
     """
     Calculate the total bill for chai and samosa

@@ -1,3 +1,17 @@
+# ============================================================
+# FILE: day_02.py
+# TOPIC: CSS selectors, CSV export from scraped data
+# FOLDER: challenges/03_web_scraping
+# CHALLENGE DAY: Day 02
+# ============================================================
+# Yeh challenge sikhata hai:
+# - CSS selectors = HTML elements dhundhne ka powerful tarika
+# - soup.select("span.titleline > a") = specific elements target karo
+# - Scraped data ko CSV file mein save karna
+# - csv.DictWriter = dictionary list ko CSV mein likho
+# - List slicing [:20] = sirf pehle 20 items lo
+# ============================================================
+
 """
  Challenge: Hacker News Top Posts Scraper
 
@@ -26,13 +40,15 @@ def fetch_top_post():
         return []
     
     soup = BeautifulSoup(response.text, "html.parser")
+    # CSS selector: span.titleline ke andar direct child <a> tags
     post_links = soup.select("span.titleline > a")
     # print(post_links)
 
     posts = []
+    # [:20] = sirf pehle 20 posts lo (top 20)
     for link in post_links[:20]:
-        title = link.text.strip()
-        url = link.get("href").strip()
+        title = link.text.strip()  # link ka visible text = title
+        url = link.get("href").strip()  # href attribute = URL
         # print(f"{title} \n {url} \n\n")
         posts.append({"title": title, "url": url})
 
@@ -45,9 +61,10 @@ def save_to_csv(posts):
         return
     
     with open(CSV_FILE, "w", newline="", encoding="utf-8") as f:
+        # DictWriter = har dict ek CSV row ban jata hai
         writer = csv.DictWriter(f, fieldnames=["title", "url"])
         writer.writeheader()
-        writer.writerows(posts)
+        writer.writerows(posts)  # saari rows ek saath likho
 
     print(f"✅ Saved Hacker News to {CSV_FILE}")
 

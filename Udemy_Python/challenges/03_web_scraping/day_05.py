@@ -1,3 +1,16 @@
+# ============================================================
+# FILE: day_05.py
+# TOPIC: wget library for downloads, alternative to requests
+# FOLDER: challenges/03_web_scraping
+# CHALLENGE DAY: Day 05
+# ============================================================
+# Yeh challenge sikhata hai:
+# - wget library = simple file download tool (pip install wget)
+# - wget.download() = URL se file download with progress bar
+# - Same scraping logic as day_04 but different download method
+# - Commented download_image() = purana requests wala method (comparison)
+# ============================================================
+
 """
  Challenge: Download Cover Images Using wget
 
@@ -18,7 +31,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import re
-import wget
+import wget  # simple download library (pip install wget)
 
 BASE_URL = "https://books.toscrape.com/"
 IMAGE_DIR = "images"
@@ -26,6 +39,7 @@ IMAGE_DIR = "images"
 def sanitize_filename(title):
     return re.sub(r'[^\w\-_. ]', '', title).replace(" ", "_")
 
+# Alternative method: requests se download (day_04 jaisa) - yahan comment hai
 def download_image(img_url, filename):
     try:
         response = requests.get(img_url, stream=True, timeout=10)
@@ -57,7 +71,8 @@ def scrape_and_download_images():
         print(f"filepath - {filepath}")
 
         print(f"Downloading: {title}")
-        # download_image(img_url, filepath)
+        # download_image(img_url, filepath)  # requests wala method (commented)
+        # wget.download = ek line mein download + progress bar dikhata hai
         wget.download(img_url, filepath)
     print("All 10 books covers downloaded to images/")
 

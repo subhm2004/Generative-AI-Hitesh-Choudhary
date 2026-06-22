@@ -1,3 +1,17 @@
+# ============================================================
+# FILE: day_6.py
+# TOPIC: File Append Mode, datetime formatting, with open
+# FOLDER: challenges/01_utilities
+# CHALLENGE DAY: Day 6
+# ============================================================
+# Yeh challenge sikhata hai:
+# - File mein data APPEND karna ("a" mode) - purana data safe rehta hai
+# - datetime.datetime.now() se current date-time lena
+# - strftime() se date ko readable format mein dikhana
+# - Optional input handle karna (rating agar diya to add karo)
+# - with open = file automatically close ho jati hai
+# ============================================================
+
 """
  Challenge: Daily Learning Journal Logger
 
@@ -22,17 +36,27 @@ Productivity Rating: 4/5
 
 import datetime
 
+# User se aaj kya seekha woh poocho
 entry = input("What did you learn today ? ").strip()
+# Optional rating - user skip bhi kar sakta hai
 rating = input("⭐️ rate your productivity today (1-5, optional)").strip()
 
+# datetime.now() = abhi ka exact date aur time (hours, minutes, seconds)
 now = datetime.datetime.now()
+# strftime = date/time ko custom format mein string banao
+# %Y = year, %m = month, %d = day, %I = 12-hour, %M = minutes, %p = AM/PM
 date_str = now.strftime("%Y-%m-%d - %I:%M %p")
 
+# Journal entry ka formatted text banao
 journal_entry = f"\n 🗓️ {date_str}\n{entry}"
+# Agar rating diya hai (empty nahi hai) to entry mein add karo
 if rating:
     journal_entry += f"\n Productivity Rating: {rating}\n"
+# Separator line add karo taaki entries alag dikhein
 journal_entry += "\n" + "-" * 50
 
+# "a" mode = APPEND - file ke end mein naya data likho, purana data safe
+# "w" mode hota to purani file delete ho jati!
 with open("learning_journal.txt", "a", encoding="utf-8") as f:
     f.write(journal_entry)
 
